@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="columns">
+     <div class="one-fifth column">
+      <nav class="menu">
+        <h3 class="menu-heading">
+          Product Line Settings
+        </h3>
+        <a class="menu-item" href="/settings/calculators" ng-class="{ 'selected': $route.current.mode == 'calculators' }">Calculators</a>
+        <a class="menu-item" href="/settings/custom_attributes" ng-class="{ 'selected': $route.current.mode == 'custom_attributes' }">Custom Attributes</a>
+        <a class="menu-item" href="/settings/locations" ng-class="{ 'selected': $route.current.mode == 'locations' }">Locations</a>
+        <a class="menu-item" href="/settings/lists" ng-class="{ 'selected': $route.current.mode == 'lists' }">Lists</a>
+        <a class="menu-item" href="/settings/option_classes" ng-class="{ 'selected': $route.current.mode == 'option_classes' }">Option Classes</a>
+        <a class="menu-item" href="/settings/pricing_fields" ng-class="{ 'selected': $route.current.mode == 'pricing_fields' }">Pricing Fields</a>
+        <a class="menu-item" href="/settings/custom_statuses" ng-class="{ 'selected': $route.current.mode == 'custom_statuses' }">Product Statuses</a>
+        <a class="menu-item" href="/settings/subscriber_classes" ng-class="{ 'selected': $route.current.mode == 'subscriber_classes' }">Subscriber Classes</a>
+      </nav>
+      <nav class="menu">
+        <h3 class="menu-heading">
+          Terms & Defaults
+        </h3>
+        <a class="menu-item" href="/settings/terminology" ng-class="{ 'selected': $route.current.mode == 'terminology' }">Terminology</a>
+        <a class="menu-item" href="/settings/defaults" ng-class="{ 'selected': $route.current.mode == 'defaults' }">Defaults</a>
+      </nav>
+      <nav class="menu">
+        <h3 class="menu-heading">
+          Syndication/Reconciliation
+        </h3>
+        <a class="menu-item" href="/settings/reconcilliation" ng-class="{ 'selected': $route.current.mode == 'reconcilliation' }">Reconcilliation Settings</a>
+        <a class="menu-item" href="/settings/syndication"ng-class="{ 'selected': $route.current.mode == 'syndication' }">Syndication Settings</a>
+        <a class="menu-item" href="/settings/mappings" ng-class="{ 'selected': $route.current.mode == 'mappings' }">Upstream Attribute Mappings</a>
+      </nav>
+      <div class="four-fifths column">
+      </div>
+    </div>
+  </div>
+</div>

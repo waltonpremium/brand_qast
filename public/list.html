@@ -1,0 +1,23 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'create'">Create a new list</h2>
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'edit'">Edit list ({{list._id}})</h2>
+    <p class="subhead-description">
+      Lists allow you to group products within a product line.
+    </p>
+  </div>
+  <div>
+    <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+      <dt><label>Name (required)</label></dt>
+      <dd><input id="name" class="form-control" type="text" ng-model="list.name" required><dd>
+      <dd class="error" ng-show="errors['name']">
+        <span ng-show="errors['name'].kind == 'required'">Name is required.</span>
+      </dd>
+    </dl>
+    <p>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveList(list)" ng-show="$route.current.mode == 'create'">Create list</button>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveList(list)" ng-show="$route.current.mode == 'edit'">Save list</button>
+      <button style="margin-top:20px" class="btn btn-danger" ng-click="deleteList(list)" ng-show="$route.current.mode == 'edit'">Delete list</button>
+    </p>
+  </div>
+</div>

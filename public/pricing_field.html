@@ -1,0 +1,34 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'create'">Create a new pricing field</h2>
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'edit'">Edit pricing field ({{pricing_field._id}})</h2>
+    <p class="subhead-description">
+      A pricing field allows you to customized pricing information for your products.
+    </p>
+  </div>
+  <div>
+    <dl class="form-group" ng-class="{ 'errored': errors['field_name'] }">
+      <dt><label for="field_name">Field Name (required)</label></dt>
+      <dd><input id="field_name" class="form-control" type="text" ng-model="pricing_field.field_name" required></dd>
+      <dd class="error" ng-show="errors['field_name']">
+        <span ng-show="errors['field_name'].kind == 'required'">Field name is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group" ng-class="{ 'errored': errors['label'] }">
+      <dt><label for="label">Label (required)</label></dt>
+      <dd><input id="label" class="form-control" type="text" ng-model="pricing_field.label" required></dd>
+      <dd class="error" ng-show="errors['label']">
+        <span ng-show="errors['label'].kind == 'required'">Label is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label for="default_value">Default Value (required)</label></dt>
+      <dd><input id="default_value" class="form-control" type="text" ng-model="pricing_field.default_value" required></dd>
+    </dl>
+    <p>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="savePricingField(pricing_field)" ng-show="$route.current.mode == 'create'">Create pricing field</button>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="savePricingField(pricing_field)" ng-show="$route.current.mode == 'edit'">Save pricing field</button>
+      <button style="margin-top:20px" class="btn btn-danger" ng-click="deletePricingField(pricing_field)" ng-show="$route.current.mode == 'edit'">Delete pricing field</button>
+    </p>
+  </div>
+</div

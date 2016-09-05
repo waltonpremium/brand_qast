@@ -1,0 +1,47 @@
+<ng-include src="'/partials/products_head.html'"></ng-include>
+<div class="new-product-container">
+  <div class="subhead">
+    <h2 class="subhead-heading">Export products</h2>
+    <p class="subhead-description">
+      Bulk import products and product updates into your product line by uploading a csv.
+    </p>
+  </div>
+  <form name="form">
+    <div class="blankslate js-uploadable-container js-upload-manifest-file repo-file-upload-target">
+      <h3>Download your custom CSV template.</h3>
+      <p>If you have not already, download your product line's custom CSV template.  The template is customized for you based on fields you created for products in this product line.</p>
+      <a class="btn btn-primary btn-large" href="/new_product_line" style="margin-top: 40px;">Download Template</a>
+    </div>
+    <div class="blankslate js-uploadable-container js-upload-manifest-file repo-file-upload-target" style="margin-top: 40px;">
+      <h3>Upload CSV</h3>
+      <p>Complete the CSV with your product information and upload it here!</p>
+      <div ngf-drop ng-model="file" class="drop-box">Drop</div>
+    </div>
+    <div class="commit-form" style="margin-top: 40px;">
+      <h3 class="file-commit-form-heading">
+        Commit Summary
+      </h3>
+      <h5>Leave a short descriptive message to indicate a commit summary.</h5>
+      <textarea id="commit-description-textarea" name="description" class="form-control input-block input-contrast commit-message js-new-blob-commit-description" placeholder="Add a commit summary…" rows="5"></textarea>
+      <div class="quick-pull-choice js-quick-pull-choice ">
+        <dl class="form-group">
+          <dd>
+            <div class="form-checkbox">
+              <label>
+                <input type="radio" class="js-quick-pull-choice-option" name="commit-choice" value="direct" checked="checked">
+                Add new products - My CSV file contains only new products.
+              </label>
+            </div>
+            <div class="form-checkbox">
+              <label>
+                <input type="radio" class="js-quick-pull-choice-option" name="commit-choice" value="quick-pull">
+                Update existing products - My CSV file contains existing products that I want to update.
+              </label>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <button type="submit" ng-click="submit()" class="btn btn-primary">Upload Products</button>
+  </form>
+</div>

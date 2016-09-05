@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="columns">
+     <div class="one-fifth column">
+      <nav class="menu">
+        <h3 class="menu-heading">
+          Account settings
+        </h3>
+        <a class="menu-item" href="/settings/account/profile" ng-class="{ 'selected': $route.current.mode == 'account_profile' }">Account Profile</a>
+        <a class="menu-item" href="/settings/account/billing_address" ng-class="{ 'selected': $route.current.mode == 'billing_address' }">Billing Address</a>
+        <a class="menu-item" href="/settings/account/billing_history" ng-class="{ 'selected': $route.current.mode == 'billing_history' }">Billing History</a>
+        <a class="menu-item" href="/settings/account/billing_credit_card" ng-class="{ 'selected': $route.current.mode == 'billing_credit_card' }">Credit Card</a>
+        <a class="menu-item" href="/settings/account/primary_contact" ng-class="{ 'selected': $route.current.mode == 'account_primary_contact' }">Primary Contact</a>
+        <a class="menu-item" href="/settings/account/users" ng-class="{ 'selected': $route.current.mode == 'account_users' }">Users</a>
+      </nav>
+    </div>
+  </div>
+</div>

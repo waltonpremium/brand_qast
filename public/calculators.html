@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/settings_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <a class="btn btn-sm right boxed-group-action" href="/settings/new_rounding_calculator">
+          New Rounding Calculator
+        </a>
+        <h3>Rounding Calculators</h3>
+        <div class="boxed-group-inner">
+          <table class="table table-hover" ng-show="rounding_calculators.length > 0">
+            <thead>
+              <th>Name</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="rounding_calculator in rounding_calculators" ng-click="roundingCalculatorDetail(rounding_calculator)" style="cursor:pointer">
+                <td>
+                  {{rounding_calculator.name}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="blankslate" ng-show="rounding_calculators.length == 0">
+            <span class="mega-octicon octicon-git-commit blankslate-icon"></span>
+            <span class="mega-octicon octicon-tag blankslate-icon"></span>
+            <span class="mega-octicon octicon-git-branch blankslate-icon"></span>
+            <h3>No Rounding Calculators</h3>
+            <p>Use it to provide information when no dynamic content exists.</p>
+            <a class="btn btn-primary btn-large" href="/settings/new_rounding_calculator" style="margin-top: 40px;">Create a rounding calculator</a>
+          </div>
+        </div>
+      </div>
+      <div class="boxed-group clearfix">
+        <a class="btn btn-sm right boxed-group-action" href="/settings/new_markup_calculator">
+          New Markup Calculator
+        </a>
+        <h3>Markup Calculators</h3>
+        <div class="boxed-group-inner">
+          <table class="table table-hover" ng-show="markup_calculators.length > 0">
+            <thead>
+              <th>Name</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="markup_calculator in markup_calculators" ng-click="markupCalculatorDetail(markup_calculator)" style="cursor:pointer">
+                <td>
+                  {{markup_calculator.name}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="blankslate" ng-show="markup_calculators.length == 0">
+            <span class="mega-octicon octicon-git-commit blankslate-icon"></span>
+            <span class="mega-octicon octicon-tag blankslate-icon"></span>
+            <span class="mega-octicon octicon-git-branch blankslate-icon"></span>
+            <h3>No Markup Calculators</h3>
+            <p>Use it to provide information when no dynamic content exists.</p>
+            <a class="btn btn-primary btn-large" href="/settings/new_markup_calculator" style="margin-top: 40px;">Create a markup calculator</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

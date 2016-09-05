@@ -1,0 +1,20 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading">Create a new custom status</h2>
+    <p class="subhead-description">
+      Create a custom status to define a new status for your products.
+    </p>
+  </div>
+  <div>
+    <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+      <dt><label for="name">Name (required)</label></dt>
+      <dd><input id="name" class="form-control" type="text" ng-model="name" required></dd>
+      <dd class="error" ng-show="errors['name']">
+        <span ng-show="errors['name'].kind == 'required'">Name is required.</span>
+      </dd>
+    </dl>
+    <p>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveCustomStatus(custom_status)">Create custom status</button>
+    </p>
+  </div>
+</div>

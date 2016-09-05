@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/settings_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <a class="btn btn-sm right boxed-group-action" href="/settings/new_list">
+          New List
+        </a>
+        <h3>Lists</h3>
+        <div class="boxed-group-inner">
+          <table class="table table-hover" ng-show="lists.length > 0">
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="list in lists | orderBy:'name'" ng-click="listDetail(list)" style="cursor:pointer">
+                <td>
+                  {{list.name}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="blankslate" ng-show="lists.length == 0">
+            <span class="mega-octicon octicon-git-commit blankslate-icon"></span>
+            <span class="mega-octicon octicon-tag blankslate-icon"></span>
+            <span class="mega-octicon octicon-git-branch blankslate-icon"></span>
+            <h3>No Lists</h3>
+            <p>Use it to provide information when no dynamic content exists.</p>
+            <a class="btn btn-primary btn-large" href="/settings/new_list" style="margin-top: 40px;">Create a new list</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

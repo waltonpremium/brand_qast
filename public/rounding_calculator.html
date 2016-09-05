@@ -1,0 +1,64 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'create'">Create a new rounding calculator</h2>
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'edit'">Edit rounding calculator ({{calculator._id}})</h2>
+    <p class="subhead-description">
+      A rounding calculator allows you to define how prices are rounded when calculated.
+    </p>
+  </div>
+  <div>
+  <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+    <dt><label for="color_4">Calculator Name (required)</dt>
+    <dd><input id="color_4" class="form-control" type="text" ng-model="calculator.name" required></dd>
+    <dd class="error" ng-show="errors['name']">
+      <span ng-show="errors['name'].kind == 'required'">Calculator name is required.</span>
+    </dd>
+  </dl>
+  <h2>Rounding Rules</h2>
+  <table class="table">
+    <thead>
+      <th>Min Price</th>
+      <th>Max Price</th>
+      <th>Rounding Option</th>
+      <th>Rounding Amount</th>
+      <th>Adjustment Amount</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="rule in calculator.rules" ng-click="roundingCalculatorDetail(calculator)">
+        <td>
+          <dl class="form-group">
+            <dt><input id="min_price" class="form-control" type="text" ng-model="rule.min_price" required style="width: inherit"></dt>
+          </dl>
+        </td>
+        <td>
+          <dl class="form-group">
+            <dt><input id="max_price" class="form-control" type="text" ng-model="rule.max_price" required style="width: inherit"></dt>
+          </dl>
+        </td>
+        <td>
+          <dl class="form-group">
+            <dt><select class="form-control" name="rule.rounding_option" ng-options="o as o for o in rounding_options" ng-model="rule.rounding_option" style="width: inherit" /></dt>
+          </dl>
+        </td>
+        <td>
+          <dl class="form-group">
+            <dt><select class="form-control" name="rule.rounding_amount" ng-options="o as o for o in rounding_amounts" ng-model="rule.rounding_amount" style="width: inherit" /></dt>
+          </dl>
+        </td>
+        <td>
+          <dl class="form-group">
+            <dt><input id="adjustment_amount" class="form-control" type="text" ng-model="rule.adjustment_amount" required style="width: inherit"></dt>
+          </dl>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <a href="#" ng-click="addRoundingRule()">add rounding rules</a>
+        </td>
+    </tbody>
+  </table>
+  <p>
+    <button style="margin-top:20px" class="btn btn-primary" ng-click="saveRoundingCalculator(calculator)" ng-show="$route.current.mode == 'create'">Create rounding calculator</button>
+    <button style="margin-top:20px" class="btn btn-primary" ng-click="saveRoundingCalculator(calculator)" ng-show="$route.current.mode == 'edit'">Save rounding calculator</button>
+    <button style="margin-top:20px" class="btn btn-danger" ng-click="deleteRoundingCalculator(calculator)" ng-show="$route.current.mode == 'edit'">Delete rounding calculator</button>
+</p>
+</div>

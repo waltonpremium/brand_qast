@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/profile_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <h3>Profile</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl>
+                <dt><label for="profile_picture">Profile Picture</dt>
+                <dt>
+                  <img alt="@jrhodes621" class="avatar" height="50" src="https://avatars1.githubusercontent.com/u/1112785?v=3&amp;s=40" width="50">
+                  <button type="button" class="btn btn-default" ngf-select ng-model="file" name="file">Upload new picture</button></dt>
+              </dl>
+              <dl>
+                <dt><label for="first_name">First Name</dt>
+                <dt><input id="first_name" class="form-control" type="text" ng-model="user.first_name" required></dt>
+              </dl>
+              <dl>
+                <dt><label for="last_name">Last Name</dt>
+                <dt><input id="last_name" class="form-control" type="text" ng-model="user.last_name" required></dt>
+              </dl>
+              <p>
+                <button style="margin-top:10px" class="btn btn-primary" ng-click="saveUser(user)">Save your profile</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

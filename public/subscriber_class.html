@@ -1,0 +1,31 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'create'">Create a new subscriber class</h2>
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'edit'">Edit subscriber class ({{subscriber_class._id}})</h2>
+    <p class="subhead-description">
+      A subscriber class allows you to group subscribers and provide different products and pricing information to each class.
+    </p>
+  </div>
+  <div>
+    <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+      <dt><label for="field_name">Name (required)</label></dt>
+      <dd><input id="field_name" class="form-control" type="text" ng-model="subscriber_class.name" required></dd>
+      <dd class="error" ng-show="errors['name']">
+        <span ng-show="errors['name'].kind == 'required'">Name is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label for="notes">Notes/Comments</label></dt>
+      <dd><textarea id="notes" class="form-control" type="text" ng-model="subscriber_class.notes" rows="5" /></dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label for="notes">Default Calculator</label></dt>
+      <dd><select class="form-control" name="calculator" ng-options="o._id as o.name for o in markup_calculators" ng-model="subscriber_class._default_calculator" /></dd>
+    </dl>
+    <p>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveSubscriberClass(subscriber_class)" ng-show="$route.current.mode == 'create'">Create subscriber class</button>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveSubscriberClass(subscriber_class)" ng-show="$route.current.mode == 'edit'">Save subscriber class</button>
+      <button style="margin-top:20px" class="btn btn-danger" ng-click="deleteSubscriberClass(subscriber_class)" ng-show="$route.current.mode == 'edit'">Delete subscriber class</button>
+    </p>
+  </div>
+</div>

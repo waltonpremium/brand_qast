@@ -1,0 +1,24 @@
+<nav class="reponav js-repo-nav js-sidenav-container-pjax" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+  <a class="btn btn-sm right" href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/products/new" ng-hide="product_line_revision.committed">New Product</a>
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}" aria-selected="true" class="js-selected-navigation-item reponav-item" ng-class="{selected: $route.current.activeTab == 'products'}" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /jrhodes621/brandqast-app" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M9.5 3l-1.5 1.5 3.5 3.5L8 11.5l1.5 1.5 4.5-5L9.5 3zM4.5 3L0 8l4.5 5 1.5-1.5L2.5 8l3.5-3.5L4.5 3z"></path></svg>
+      <span itemprop="name">Products</span>
+      <meta itemprop="position" content="1">
+    </a>
+  </span>
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/pricing" class="js-selected-navigation-item reponav-item" ng-class="{selected: $route.current.activeTab == 'pricing'}" data-hotkey="g p" data-selected-links="repo_pulls /jrhodes621/brandqast-app/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 11.28c0-1.73 0-6.28 0-6.28-0.03-0.78-0.34-1.47-0.94-2.06s-1.28-0.91-2.06-0.94c0 0-1.02 0-1 0V0L4 3l3 3V4h1c0.27 0.02 0.48 0.11 0.69 0.31s0.3 0.42 0.31 0.69v6.28c-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72z m-1 2.92c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2zM4 3c0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72 0 1.55 0 5.56 0 6.56-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72V4.72c0.59-0.34 1-0.98 1-1.72z m-0.8 10c0 0.66-0.55 1.2-1.2 1.2s-1.2-0.55-1.2-1.2 0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2z m-1.2-8.8c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">Pricing</span>
+    </a>
+  </span>
+  <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/product_status" class="js-selected-navigation-item reponav-item" ng-class="{selected: $route.current.activeTab == 'product_status'}" data-hotkey="g w" data-selected-links="repo_wiki /jrhodes621/brandqast-app/wiki">
+    <svg aria-hidden="true" class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path d="M2 5h4v1H2v-1z m0 3h4v-1H2v1z m0 2h4v-1H2v1z m11-5H9v1h4v-1z m0 2H9v1h4v-1z m0 2H9v1h4v-1z m2-6v9c0 0.55-0.45 1-1 1H8.5l-1 1-1-1H1c-0.55 0-1-0.45-1-1V3c0-0.55 0.45-1 1-1h5.5l1 1 1-1h5.5c0.55 0 1 0.45 1 1z m-8 0.5l-0.5-0.5H1v9h6V3.5z m7-0.5H8.5l-0.5 0.5v8.5h6V3z"></path></svg>
+    Status
+  </a>
+  <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/inactive_products" class="js-selected-navigation-item reponav-item" ng-class="{selected: $route.current.activeTab == 'inactive_products'}" data-selected-links="pulse /jrhodes621/brandqast-app/pulse">
+    <svg aria-hidden="true" class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0V10h3.6L4.5 8.2l0.9 5.4L9 8.5l1.6 1.5H14V8H11.5z"></path></svg>
+    Inactive Products
+  </a>
+</nav>

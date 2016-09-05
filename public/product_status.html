@@ -1,0 +1,56 @@
+<ng-include src="'/partials/products_head.html'"></ng-include>
+<div class="container products-container">
+  <div class="boxed-group" ng-show="products.length > 0">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th width="140px"></th>
+          <th width="180px">Product Name</th>
+          <th width="120px">SKU</th>
+          <th width="120px">Manu #</th>
+          <th width="160px">Active/Inactive</th>
+          <th width="160px">Product Status</th>
+          <th></th>
+          <th ng-repeat="list in product_line_revision.lists | orderBy:'name'">
+           {{list.name}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in products | orderBy:'name'" ng-click="productDetail(product)" style="cursor:pointer">
+          <td align="center">
+            <img src="/images/thumbnail-default.jpg"  class="thumbnail" width="120px;" ng-hide="product.primary_media" />
+            <img ng-src="/{{product.primary_media.filename}}" class="thumbnail" width="120px;" ng-show="product.primary_media" />
+          </td>
+          <td>
+            <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/products/{{product._id}}">{{ product.name }}</a>
+          </td>
+          <td>
+            {{product.sku}}
+          </td>
+          <td>
+            {{product.manufacturer_number}}
+          </td>
+          <td>
+            <select name="product_status" id="productStatus" class="form-select" style="width: 100%" ng-model="product.product_status" ng-change="productStatusChanged(product.product_status, product)" ng-disabled="product_line_revision.committed" >
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </td>
+          <td>
+            <select name="custom_status" id="customStatus"  class="form-select" style="width: 100%" ng-model="product.custom_status" ng-options="o as o for o in custom_statuses"
+               ng-change="customStatusChanged(product.custom_status, product)" ng-disabled="product_line_revision.committed" ></select>
+          </td>
+          <td>
+            <input type="checkbox" ng-click="allListChecked(product)" ng-disabled="product_line_revision.committed" />
+          </td>
+          <td ng-repeat="list in product_line_revision.lists | orderBy:'name'">
+            <input type="checkbox" ng-click="listChecked(product, list)" ng-checked="isProductInList(product, list)" ng-disabled="product_line_revision.committed" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="10" class="pagination-sm" boundary-link-numbers="true" ng-change="pageChanged()" ng-show="products.length > 0"></uib-pagination>
+  <ng-include src="'/partials/products_blankstate.html'"></ng-include>
+</div>

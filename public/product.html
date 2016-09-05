@@ -1,0 +1,322 @@
+<ng-include src="'/partials/products_head.html'"></ng-include>
+<div class="new-product-container">
+  <div class="flash-messages" ng-show="flash_message">
+    <div class="flash">
+      {{flash_message}}
+    </div>
+  </div>
+  <div class="subhead">
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'create'">Create a new product</h2>
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'edit'">Edit product</h2>
+  </div>
+  <div class="boxed-group2" style="margin-top:20px">
+    <div class="boxed-group-inner2">
+      <div class="columns">
+        <div class="column one-fifth">
+          <dl>
+            <dt>
+              <img src="/images/thumbnail-default.jpg" class="thumbnail" width="160px;" ng-hide="product.primary_media" />
+              <img ng-src="/{{product.primary_media.filename}}" class="thumbnail" width="160px;" ng-show="product.primary_media" />
+            </dt>
+            <form name="form">
+              <button type="button" class="btn btn-sm" ngf-select ng-model="file" name="file">Upload primary photo</button></dt>
+            </form>
+          </dl>
+        </div>
+        <div class="column four-fifths">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+                <dt><label>Product Name (required)</label></dt>
+                <dd><input id="name" class="form-control" type="text" ng-model="product.name" required ng-disabled="product_line_revision.committed"/></dd>
+                <dd class="error" ng-show="errors['name']">
+                  <span ng-show="errors['name'].kind == 'required'">Product name is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label>Brand Name</label></dt>
+                <dd><input id="brand_name" class="form-control" type="text" ng-model="product.brand_name" required ng-disabled="product_line_revision.committed" /></dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label>Product Description</label></dt>
+                <dd><textarea id="description" class="form-control" type="text" ng-model="product.description" required rows="12" ng-disabled="product_line_revision.committed" /></dd>
+              </dl>
+            </div>
+            <div class="column one-third">
+              <dl class="form-group" ng-class="{ 'errored': errors['custom_status'] }">
+                <dt><label>Product Status (required)</label>
+                <dd><select class="form-control" style="width: 100%" name="product.custom_status" ng-options="o as o for o in custom_statuses" ng-model="product.custom_status"  ng-disabled="product_line_revision.committed" required /></dd>
+                <dd class="error" ng-show="errors['custom_status']">
+                  <span ng-show="errors['custom_status'].kind == 'required'">Product status is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['sku'] }">
+                <dt><label>SKU (required)</label>
+                <dd><input id="sku" class="form-control" type="text" ng-model="product.sku" required  ng-disabled="product_line_revision.committed"></dd>
+                <dd class="error" ng-show="errors['sku']">
+                  <span ng-show="errors['sku'].kind == 'required'">SKU is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['manufacturer_number'] }">
+                <dt><label>Manufacturer Number (required)</label></dt>
+                <dd><input id="manufacturer_number" class="form-control" type="text" ng-model="product.manufacturer_number" required  ng-disabled="product_line_revision.committed"></dd>
+                <dd class="error" ng-show="errors['manufacturer_number']">
+                  <span ng-show="errors['manufacturer_number'].kind == 'required'">Manufacturer number is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label>UPC</label></dt>
+                <dd><input id="upc" class="form-control" type="text" ng-model="product.upc" ng-disabled="product_line_revision.committed"></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column one-third">
+              <dl class="form-group">
+                <dt><label>Display Price</label></dt>
+                <dd><select class="form-control" style="width: 100%" name="display_price" ng-options="o._id as o.label for o in pricing_fields" ng-model="product.display_price"  ng-disabled="product_line_revision.committed" /></dd>
+              </dl>
+            </div>
+            <div class="column two-thirds">
+              <dl class="form-group">
+                <dt><label>Effective Price</label></dt>
+                <dd>$0.00</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group">
+                <dt><label>Calculator</label></dt>
+                <dd><select class="form-control" style="width: 100%" name="calculator" ng-options="o._id as o.name for o in product_line_revision.markup_calculators" ng-model="product.markup_calculator"  ng-disabled="product_line_revision.committed" /></dd>
+              </dl>
+            </div>
+            <div class="column one-third">
+              <dl>
+                <button type="button" class="btn btn-default">Calculate Pricing</button>
+              </dl>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column one-fourth" ng-repeat="pricing_field in product_line_revision.pricing_fields">
+              <dl class="form-group">
+                <dt><label>{{pricing_field.label}}</label></dt>
+                <dd><input id="{{pricing_field.label}}" class="form-control" type="text" ng-model="pricing[pricing_field._id]" ng-disabled="product_line_revision.committed" /></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="right">
+              <button style="margin-top:20px" class="btn btn-default" ng-click="deactivateProduct(product)" ng-show="product.product_status == 'Active'">Deactivate product</button>
+              <button style="margin-top:20px" class="btn btn-default" ng-click="activateProduct(product)" ng-show="product.product_status == 'Inactive'">Activate product</button>
+              <button style="margin-top:20px" class="btn btn-primary" ng-click="saveProduct(product)">Save product</button>
+          </div>
+          <div class="clearfix">
+            &nbsp;
+          </div>
+          <uib-tabset active="active" style="margin-top: 40px;">
+           <uib-tab index="0" heading="Media">
+             <div class="mt-5">
+             <div class="blankslate" data-upload-policy-url="/upload/policies/upload-manifest-files" data-upload-repository-id="11200508" data-directory-upload-max-files="100" data-directory-upload="">
+                <img alt="Feature image" draggable="false" height="52" src="https://assets-cdn.github.com/images/files-lg.svg" width="204">
+                <h2 class="repo-file-upload-text initial-text">Drag files here to add them to your repository</h2>
+                <p class="repo-file-upload-choose">
+                  Or <a class="manual-file-chooser-text" href="#">choose your files</a>
+                </p>
+              </div>
+              <div class="row" ng-repeat="rows in chunkedMedia">
+                <div class="col-md-4" ng-repeat="media in rows">
+                  <img ng-src="/{{media.filename}}" width="160px" class="thumbnail" />
+                </div>
+              </div>
+            </div>
+           </uib-tab>
+           <uib-tab index="1" heading="Copy">
+             <div class="mt-5">
+               <dl>
+                 <dt><label for="headline">Headline</label></dt>
+                 <dt><input id="headline" class="form-control" type="text" ng-model="product.product_copy.headline" placeholder="Headline Text" ng-disabled="product_line_revision.committed" /></dt>
+               </dl>
+               <dl>
+                 <dt><label for="subhead">Subhead</dt>
+                 <dt><input id="subhead" class="form-control" type="text" ng-model="product.product_copy.subhead" placeholder="Subhead Text" ng-disabled="product_line_revision.committed" /></dt>
+               </dl>
+               <dl>
+                   <dt><label for="intro_copy">Intro Copy</label></dt>
+                   <dt><input id="intro_copy" class="form-control" type="text" ng-model="product.product_copy.intro_copy" placeholder="Intro Copy" ng-disabled="product_line_revision.committed" /></dt>
+               </dl>
+               <dl>
+                   <dt><label for="body_copy">Body Copy</label></dt>
+                   <dt><input id="body_copy" class="form-control" type="text" ng-model="product.product_copy.body_copy" placeholder="Body Copy" ng-disabled="product_line_revision.committed" /></dt>
+               </dl>
+               <dl>
+                   <dt><label for="features_list">Features Lines</label></dt>
+                   <dt><input id="feature_list" class="form-control" type="text" ng-model="product.product_copy.feature_list" placeholder="Features List" ng-disabled="product_line_revision.committed" /></dt>
+               </dl>
+               <dl>
+                   <dt><label for="specifications">Specifications</label>
+                   <dt><input id="specifications" class="form-control" type="text" ng-model="product.product_copy.specifications" placeholder="Specifications" ng-disabled="product_line_revision.committed" /></dt>
+              </dl>
+               <dl>
+                   <dt><label for="shipping_info">Shipping Info</label></dt>
+                   <dt><input id="shipping_info" class="form-control" type="text" ng-model="product.product_copy.shipping_info" placeholder="Shipping Info" ng-disabled="product_line_revision.committed" /></dt>
+               </dl>
+               <dl>
+                   <dt><label for="product_website_link">Product Website Link</label></dt>
+                   <dt><input id="website_link" class="form-control" type="text" ng-model="product.product_copy.website_url" placeholder="Product Website Link" ng-disabled="product_line_revision.committed" /></dt>
+               </dl>
+               <dl>
+                   <dt><label for="product_video_link">Product Video Link</label></dt>
+                   <dt><input id="video_link" class="form-control" type="text" ng-model="product.product_copy.video_url" placeholder="Product Video Link" ng-disabled="product_line_revision.committed" /></dt>
+              </dl>
+              <dl>
+                  <dt><label for="related_products">Related Products</label>
+                  <dt><input id="related_products" class="form-control" type="text" ng-model="product.product_copy.related_products" placeholder="Related Products" ng-disabled="product_line_revision.committed" /></dt>
+              </dl>
+             </div>
+           </uib-tab>
+           <uib-tab index="2" heading="Attributes">
+             <div class="mt-5">
+               <div class="boxed-group" ng-repeat="custom_attribute in product_line_revision.custom_attributes | orderBy:'group_name'">
+                 <h3>{{custom_attribute.group_name}}</h3>
+                 <div class="boxed-group-inner">
+                     <table class="table" ng-repeat="attribute in custom_attribute.attributes">
+                       <tbody>
+                         <tr style="cursor:pointer">
+                           <td>{{attribute.name}}</td>
+                           <td><input class="form-control" type="text" ng-model="attribute.value" placeholder="{{attribute.sample_value}}" ng-disabled="product_line_revision.committed" /></td>
+                         </tr>
+                       </thead>
+                     </tbody>
+                  </table>
+                </div>
+              </div>
+               <div class="blankslate" ng-show="product_line_revision.custom_attributes.length == 0">
+                 <h3>This is a blank slate</h3>
+                 <p>Use it to provide information when no dynamic content exists.</p>
+               </div>
+             </div>
+           </uib-tab>
+           <uib-tab index="3" heading="Lists">
+             <div class="mt-5">
+               <table class="table table-hover" ng-show="product_line_revision.lists.length > 0">
+                 <tbody>
+                   <tr ng-repeat="list in product_line_revision.lists | orderBy:'name'" style="cursor:pointer">
+                     <td style="width: 40px;">
+                       <input type="checkbox" ng-click="list_checked(list)" ng-checked="is_list_checked(list)" ng-disabled="product_line_revision.committed" />
+                     </td>
+                     <td>
+                       {{list.name}}
+                     </td>
+                   </tr>
+                 </tbody>
+              </table>
+              <div class="blankslate" ng-show="product_line_revision.lists.length == 0">
+                <h3>This is a blank slate</h3>
+                <p>Use it to provide information when no dynamic content exists.</p>
+              </div>
+            </div>
+           </uib-tab>
+           <uib-tab index="4" heading="Locations">
+             <div class="mt-5">
+               <table class="table table-hover" ng-show="product_line_revision.locations.length > 0">
+                 <tbody>
+                   <tr ng-repeat="location in product_line_revision.locations | orderBy:'name'" style="cursor:pointer">
+                     <td style="width: 40px;">
+                       <input type="checkbox" ng-click="location_checked(location)" ng-checked="is_location_checked(location)" ng-disabled="product_line_revision.committed" />
+                     </td>
+                     <td>
+                       {{location.name}}
+                     </td>
+                   </tr>
+                 </tbody>
+              </table>
+              <div class="blankslate" ng-show="product_line_revision.locations.length == 0">
+                <h3>This is a blank slate</h3>
+                <p>Use it to provide information when no dynamic content exists.</p>
+              </div>
+            </div>
+           </uib-tab>
+           <uib-tab index="5" heading="Subscriber Classes">
+             <div class="mt-5">
+               <table class="table table-hover" ng-show="product_line_revision.subscriber_classes.length > 0">
+                 <tbody>
+                   <tr ng-repeat="subscriber_class in product_line_revision.subscriber_classes | orderBy:'name'" style="cursor:pointer">
+                     <td style="width: 40px;">
+                       <input type="checkbox" ng-click="subscriber_class_checked(subscriber_class)" ng-checked="is_subscriber_class_checked(subscriber_class)" ng-disabled="product_line_revision.committed" />
+                     </td>
+                     <td>
+                       {{subscriber_class.name}}
+                     </td>
+                   </tr>
+                 </tbody>
+              </table>
+              <div class="blankslate" ng-show="product_line_revision.subscriber_classes.length == 0">
+                <h3>This is a blank slate</h3>
+                <p>Use it to provide information when no dynamic content exists.</p>
+              </div>
+            </div>
+           </uib-tab>
+           <uib-tab index="6" heading="Pricing">
+             <div class="mt-5">
+               <table class="table table-hover mb-5" ng-show="product.subscriber_classes.length > 0">
+                 <thead>
+                   <tr>
+                     <th width="180px">Subscriber Level</th>
+                     <th align="center" ng-repeat="pricing_field in product_line_revision.pricing_fields | orderBy:'name'">
+                       {{ pricing_field.label }}
+                     </th>
+                     <th>Effective Price</th>
+                     <th>Calculator</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr ng-repeat="product_subscriber_class in product.subscriber_classes | orderBy:'name'" style="cursor:pointer">
+                     <td>{{product_subscriber_class.subscriber_class.name}}</td>
+                     <td align="center" ng-click="subscriberClassPriceCellClicked($parent.$index, $index)" ng-repeat="pricing_field in product_line_revision.pricing_fields | orderBy:'name'">
+                       <span ng-show="!isEditingSubscriberClass($parent.$index, $index)">{{product_subscriber_class_pricing[$parent.$index][$index] | currency}}</span>
+                       <span ng-show="isEditingSubscriberClass($parent.$index, $index)"><input class="form-control" type="textbox" name="pricing" ng-model="product_subscriber_class_pricing[$parent.$index][$index]" ng-blur="updateProductSubscriberClassPrice(product, product_subscriber_class, pricing_field, $parent.$index, $index)" style="width: 60px;" /></span>
+                     </td>
+                     <td><select class="form-control" name="display_price" ng-options="o._id as o.label for o in product_line_revision.pricing_fields" ng-model="product_subscriber_class.display_price"  ng-change="updateSubscriberClassDisplayPrice(product, product_subscriber_class, product_subscriber_class.display_price)"/></td>
+                     <td><select class="form-control" name="calculator" ng-options="o._id as o.name for o in product_line_revision.markup_calculators" ng-model="product_subscriber_class.markup_calculator" ng-change="updateSubscriberClassMarkupCalculator(product, product_subscriber_class, product_subscriber_class.markup_calculator)" /></td>
+                   </tr>
+                 </tbody>
+              </table>
+               <div class="blankslate mb-5" ng-show="product.subscriber_classes.length == 0">
+                 <h3>This is a blank slate</h3>
+                 <p>Use it to provide information when no dynamic content exists.</p>
+               </div>
+               <table class="table table-hover mb-5" ng-show="product.locations.length > 0">
+                 <thead>
+                   <tr>
+                     <th width="180px">Location</th>
+                     <th align="center" ng-repeat="pricing_field in product_line_revision.pricing_fields | orderBy:'name'">
+                       {{ pricing_field.label }}
+                     </th>
+                     <th>Effective Price</th>
+                     <th>Calculator</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr ng-repeat="product_location in product.locations | orderBy:'name'" style="cursor:pointer">
+                     <td>{{product_location.location.name}}</td>
+                     <td align="center" ng-click="locationPriceCellClicked($parent.$index, $index)" ng-repeat="pricing_field in product_line_revision.pricing_fields | orderBy:'name'">
+                       <span ng-show="!isEditingLocation($parent.$index, $index)">{{product_location_pricing[$parent.$index][$index] | currency}}</span>
+                       <span ng-show="isEditingLocation($parent.$index, $index)"><input class="form-control" type="textbox" name="pricing" ng-model="product_location_pricing[$parent.$index][$index]" ng-blur="updateProductLocationPrice(product, product_location, pricing_field, $parent.$index, $index)" style="width: 60px;" /></span>
+                     </td>
+                     <td><select class="form-control" name="display_price" ng-options="o._id as o.label for o in product_line_revision.pricing_fields" ng-model="product_location.display_price"  ng-change="updateLocationDisplayPrice(product, product_location, product_location.display_price)"/></td>
+                     <td><select class="form-control" name="calculator" ng-options="o._id as o.name for o in product_line_revision.markup_calculators" ng-model="product_location.markup_calculator" ng-change="updateLocationMarkupCalculator(product, product_location, product_location.markup_calculator)" /></td>
+                   </tr>
+                 </tbody>
+              </table>
+               <div class="blankslate mb-5" ng-show="product.locations.length == 0">
+                 <h3>This is a blank slate</h3>
+                 <p>Use it to provide information when no dynamic content exists.</p>
+               </div>
+             </div>
+           </uib-tab>
+         </uib-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

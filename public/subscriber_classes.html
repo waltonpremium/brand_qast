@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/settings_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <a class="btn btn-sm right boxed-group-action" href="/settings/new_subscriber_class">
+          New Subscriber Class
+        </a>
+        <h3>New Subscriber Class</h3>
+        <div class="boxed-group-inner">
+          <table class="table table-hover" ng-show="subscriber_classes.length > 0">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Notes/Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="subscriber_class in subscriber_classes | orderBy:'name'" ng-click="subscriberClassDetail(subscriber_class)" style="cursor:pointer">
+                <td>
+                  {{subscriber_class.name}}
+                </td>
+                <td>
+                  {{subscriber_class.notes}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="blankslate" ng-show="subscriber_classes.length == 0">
+            <span class="mega-octicon octicon-git-commit blankslate-icon"></span>
+            <span class="mega-octicon octicon-tag blankslate-icon"></span>
+            <span class="mega-octicon octicon-git-branch blankslate-icon"></span>
+            <h3>No Subscriber Classes</h3>
+            <p>Use it to provide information when no dynamic content exists.</p>
+            <a class="btn btn-primary btn-large" href="/settings/new_subscriber_class" style="margin-top: 40px;">Create a subscriber class</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/company_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <h3>Social Media Accounts</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column one-third">
+              <dl class="form-group">
+                <dt><label for="facebook_url">Facebook Url</dt>
+                <dd><input id="facebook_url" class="form-control" type="text" ng-model="account.social_media.facebook_url"></dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="pintrest_url">Pintrest Url</label></dt>
+                <dd><input id="pintrest_url" class="form-control" type="text" ng-model="account.social_media.pintrest_url"><dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="instagram_account">Instagram Account</label></dt>
+                <dd><input id="instagram_account" class="form-control" type="text" ng-model="account.social_media.instagram_account"></dd>
+              </dl>
+            </div>
+            <div class="column one-third">
+              <dl class="form-group">
+                <dt><label for="twitter_name">Twitter Name</dt>
+                <dd><input id="twitter_name" class="form-control" type="text" ng-model="account.social_media.twitter_name"></dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="google_plus_name">Google+ Name</label></dt>
+                <dd><input id="google_plus_name" class="form-control" type="text" ng-model="account.social_media.google_plus_name"></dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="vine_account">Vine Account</label></dt>
+                <dd><input id="vine_account" class="form-control" type="text" ng-model="account.social_media.vine_account"></dd>
+              </dl>
+            </div>
+            <div class="column one-third">
+              <dl class="form-group">
+                <dt><label for="linkedin_username">LinkedIn Username</dt>
+                <dd><input id="linkedin_username" class="form-control" type="text" ng-model="account.social_media.linkedin_username" required></dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="youtube_url">YouTube URL</label></dt>
+                <dd><input id="youtube_url" class="form-control" type="text" ng-model="account.social_media.youtube_url"></dd>
+              </dl>
+            </div>
+          </div>
+          <p>
+            <button style="margin-top:10px" class="btn btn-primary" ng-click="saveSocialMedia(account.social_media)">Save social media accounts</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

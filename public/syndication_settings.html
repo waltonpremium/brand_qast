@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/settings_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="subhead">
+        <h2 class="subhead-heading">Syndication Settings</h2>
+        <p>Please select which fields you will always want to syndicate to your downstream subscribers and de-select fields that you NEVER want to send.</p>
+      </div>
+    </div>
+  </div>
+</div>

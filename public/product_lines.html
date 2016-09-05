@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/main_profile.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="tabnav">
+        <ng-include src="'/partials/main_sub_nav.html'"></ng-include>
+      </div>
+      <div class="product-lines-container" ng-show="product_lines.length > 0">
+        <div class="filter-bar border-bottom border-gray-dark p-0 pb-3 position-relative">
+          <a class="btn btn-primary ml-3 right" href="/new_product_line" ng-show="isAuthed">
+            <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+            New
+          </a>
+          <form accept-charset="UTF-8" action="/search" class="d-inline" method="get" role="search">
+            <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+            <input type="hidden" name="user" value="jrhodes621">
+            <input type="text" style="width: 260px; display: inline;" id="your-repos-filter" name="q" class="form-control js-filterable-field" placeholder="Find a  product line…" tabindex="2" aria-label="Filter your product line by name">
+            <input type="submit" value="Search" class="btn">
+          </form>
+        </div>
+        <ul class="repo-list">
+          <div class="repo-list-item" ng-repeat="product_line in product_lines | orderBy:'name'">
+            <h3 class="repo-list-name">
+              <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line._current_revision}}">{{ product_line.name }} Product Line ({{product_line._id}})</a>
+            </h3>
+            <p>
+              {{ product_line.description}}
+            </p>
+            <p>
+              Last Updated: {{product_line.updatedAt | date: 'medium'}}
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="blankslate blankslate-spacious blankslate-large" ng-show="product_lines.length == 0">
+        <h3>Product Lines</h3>
+        <p>It looks like you haven't created any product lines yet!  Simply put product lines are the highest level grouping of products in your organization's Brandqast account.  Your company may only need to create a single product line for all products or you may get more complex and have different product lines for product types or create a new one for each quarter or year.  Product lines also allow you to control which products are syndicated to your downstream subscribers and how data is published via APIs.</p>
+        <a class="btn btn-primary btn-large" href="/new_product_line" style="margin-top: 40px;">Create a Product Line</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

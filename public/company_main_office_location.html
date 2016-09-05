@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/company_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <h3>Main Office Location</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group">
+                <dt><label for="address_line_1">Address Line 1</dt>
+                <dd><input id="address_line_1" class="form-control" type="text" ng-model="account.main_office_location.address_line_1" required></dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="address_line_2">Address Line 2</label></dt>
+                <dd><input id="address_line_2" class="form-control" type="text" ng-model="account.main_office_location.address_line_2"></dd>
+              </dl>
+              <div class="columns">
+                <div class="column one-third left">
+                  <dl class="form-group">
+                    <dt><label for="city">City</label></dt>
+                    <dd><input id="city" class="form-control" type="text" ng-model="account.main_office_location.city"></dd>
+                  </dl>
+                </div>
+                <div class="column one-third ">
+                  <dl class="form-group">
+                    <dt><label for="state">State</label></dt>
+                    <dd><input id="state" class="form-control" type="text" ng-model="account.main_office_location.state"></dd>
+                  </dl>
+                </div>
+                <div class="column one-third ">
+                  <dl class="form-group">
+                    <dt><label for="zip_code">Zip Code</label></dt>
+                    <dd><input id="zip_code" class="form-control" type="text" ng-model="account.main_office_location.zip_code"></dd>
+                  </dl>
+                </div>
+              </div>
+              <p>
+                <button style="margin-top:10px" class="btn btn-primary" ng-click="saveMainOfficeLocation(account.main_office_location)">Save main office location</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

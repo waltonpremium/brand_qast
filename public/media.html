@@ -1,0 +1,18 @@
+<div class="new-product-container mt-5">
+  <div class="subhead">
+    <h2>Media Library</h2>
+  </div>
+  <div class="blankslate" data-upload-policy-url="/upload/policies/upload-manifest-files" data-upload-repository-id="11200508" data-directory-upload-max-files="100" data-directory-upload="">
+     <img alt="Feature image" draggable="false" height="52" src="https://assets-cdn.github.com/images/files-lg.svg" width="204">
+     <h2 class="repo-file-upload-text initial-text">Drag files here to add them to your repository</h2>
+     <p class="repo-file-upload-choose">
+       Or <a class="manual-file-chooser-text" href="#">choose your files</a>
+     </p>
+   </div>
+   <div class="row" ng-repeat="rows in chunkedMedia">
+     <div class="col-md-4" ng-repeat="media in rows">
+       <img ng-src="/{{media.filename}}" width="160px" class="thumbnail" />
+     </div>
+   </div>
+  </div>
+</div>

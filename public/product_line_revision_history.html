@@ -1,0 +1,27 @@
+<ng-include src="'/partials/products_head.html'"></ng-include>
+<div class="container products-container">
+  <div class="boxed-group">
+    <h3>
+      Product Line Revision History
+    </h3>
+    <div class="boxed-group-inner">
+      <div ng-repeat="product_line_revision in product_line_revisions | orderBy:'version':true" style="cursor:pointer">
+          <dl>
+            <dt>
+              Revision <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}">{{product_line_revision._id}}</a>
+            </dt>
+            <dt>
+              Version: {{ product_line_revision.version}}
+            </dt>
+            <dt>
+              Created: {{product_line_revision.createdAt  | date:'medium'}}
+            </dt>
+            <dt>
+              Last Updated: {{product_line_revision.updatedAt  | date:'medium'}}
+            </dt>
+          </dl>
+          <button type="button" class="btn btn-default" ng-click="rollback(product_line_revision)">Rollback</button>
+      </div>
+    </div>
+  </div>
+</div>

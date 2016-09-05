@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/settings_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="subhead">
+        <h2 class="subhead-heading">Terminology</h2>
+        <p>Customize terms used in Brandqast to match company terminology specific to your industry.</p>
+      </div>
+      <div class="boxed-group">
+        <h3>Terms</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group"  ng-class="{ 'errored': errors['terms.sale'] }">
+                <dt><label for="sale">Sale</label></dt>
+                <dd><input id="sale" class="form-control" type="text" ng-model="account.terms.sale" required/></dd>
+                <dd class="error" ng-show="errors['terms.sale']">
+                  <span ng-show="errors['terms.sale'].kind == 'required'">Sale is a required field.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['terms.list'] }">
+                <dt><label for="sale">List</label></dt>
+                <dd><input id="sale" class="form-control" type="text" ng-model="account.terms.list" required/></dd>
+                <dd class="error" ng-show="errors['terms.list']">
+                  <span ng-show="errors['terms.list'].kind == 'required'">List is a required field.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['terms.location'] }">
+                <dt><label for="location">Location</label></dt>
+                <dd><input id="location" class="form-control" type="text" ng-model="account.terms.location" required/></dd>
+                <dd class="error" ng-show="errors['terms.location']">
+                  <span ng-show="errors['terms.location'].kind == 'required'">Location is a required field.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['terms.downstream_subscription'] }">
+                <dt><label for="downstream_subscription">Downstream Subscription</label></dt>
+                <dd><input id="downstream_subscription" class="form-control" type="text" ng-model="account.terms.downstream_subscription" required/></dd>
+                <dd class="error" ng-show="errors['terms.downstream_subscription']">
+                  <span ng-show="errors['terms.downstream_subscription'].kind == 'required'">Downstream Subscription is a required field.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['terms.upstream_subscription'] }">
+                <dt><label for="upstream_subscription">Upstream Subscription</label></dt>
+                <dd><input id="upstream_subscription" class="form-control" type="text" ng-model="account.terms.upstream_subscription" required/></dd>
+                <dd class="error" ng-show="errors['terms.upstream_subscription']">
+                  <span ng-show="errors['terms.upstream_subscription'].kind == 'required'">Upstream Subscription is a required field.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['terms.subscriber_class'] }">
+                <dt><label for="subscriber_class">Subscriber Class</label></dt>
+                <dd><input id="subscriber_class" class="form-control" type="text" ng-model="account.terms.subscriber_class" required/></dd>
+                <dd class="error" ng-show="errors['terms.subscriber_class']">
+                  <span ng-show="errors['terms.subscriber_class'].kind == 'required'">Subscriber Class is a required field.</span>
+                </dd>
+              </dl>
+              <p>
+                <button style="margin-top:10px" class="btn btn-primary" ng-click="saveTerminology(account.terms)">Save terminology</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

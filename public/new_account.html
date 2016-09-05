@@ -1,0 +1,45 @@
+<div class="container signup-container">
+  <div class="row" ng-hide="contact._id">
+    <div class="col-md-6">
+        <h2>Create a BrandQast Account</h2>
+    </div>
+  </div>
+  <div>
+    <p>
+      <label>First Name (required)</label>
+      <input id="first_name" class="form-control" type="text" ng-model="new_account.first_name" required>
+    </p>
+    <p>
+      <label>Last Name (required)</label>
+      <input id="description" class="form-control" type="text" ng-model="new_account.last_name" required>
+    </p>
+    <p>
+      <label>Company Name (required)</label>
+      <input id="name" class="form-control" type="text" ng-model="new_account.name" required>
+    </p>
+    <p>
+      <label>Subdomain (required)</label>
+      <input id="subdomain" class="form-control" type="text" ng-model="new_account.subdomain" required>
+    </p>
+    <p>
+      <label>Type of Business (required)</label>
+      <input id="description" class="form-control" type="text" ng-model="new_account.business_type" required>
+    </p>
+    <p>
+      <label>Email Address (required)</label>
+      <input id="description" class="form-control" type="text" ng-model="new_account.user.email_address" required>
+    </p>
+    <p>
+      <label>Phone Number (required)</label>
+      <input id="description" class="form-control" type="text" ng-model="new_account.phone" required>
+    </p>
+    <p>
+      <label>Message</label>
+      <input id="description" class="form-control" type="text" ng-model="new_account.message">
+    </p>
+    <p>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="signUp(new_account)">Save</button>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'partials/main_profile.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="tabnav">
+        <ng-include src="'partials/main_sub_nav.html'"></ng-include>
+      </div>
+      <div class="product-lines-container" ng-show="widgets.length > 0">
+        <h4>Widgets</h4>
+        <table class="table table-hover">
+          <tbody>
+            <tr ng-repeat="widget in widgets" style="cursor:pointer">
+              <td>
+                {{ widget.name}}
+                <br>
+                Last Updated: {{widget.updatedAt}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="blankslate blankslate-spacious blankslate-large" ng-show="widgets.length == 0">
+        <h3>Widgets</h3>
+        <p>Widgets allow you to publish your products to a website and to many popular places around the web without little to no knowledge of web development.  Once you have your widget in place, any future product changes that you publish will automatically update your widget.  You will have complete control over the products and product information that is included in your widget.</p>
+        <a class="btn btn-primary btn-large" href="/new_widget" style="margin-top: 40px;">Create a Widget</a>
+      </div>
+    </div>
+  </div>
+</div>

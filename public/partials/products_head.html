@@ -1,0 +1,32 @@
+<div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+  <div class="container repohead-details-container">
+    <div class="right">
+      <a style="margin-top:20px" class="btn btn-primary" ng-click="commit()" ng-hide="product_line_revision.committed">Commit</a>
+      <a style="margin-top:20px" class="btn btn-primary" ng-click="syndicate()" ng-show="product_line_revision.committed">Syndicate</a>
+    </div>
+    <span class="state state-open left" style="margin-top: 8px; margin-right: 10px;" ng-hide="product_line_revision.committed">Open</span>
+    <span class="state state-closed left" style="margin-top: 8px; margin-right: 10px;" ng-show="product_line_revision.committed">Locked</span>
+    <div>
+      <h1 class="entry-title private">
+        <span class="author" itemprop="author"><a href="/product_lines" class="url fn" rel="author">{{product_line.name}}</a></span>
+      </h1>
+      <h4>
+        Revision {{product_line_revision._id}}
+        <span class="notes">(<a href="/product_lines/{{product_line._id}}/product_line_revision_history">revision history</a>)</span>
+      </h4>
+    </div>
+    <div class="right">
+      <div class="btn-group">
+        <button class="btn" type="button" ng-hide="product_line_revision.committed">
+          <a href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/import">Import</a>
+        </button>
+        <button class="btn" type="button">
+          <a href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/export">Export</a>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ng-include src="'/partials/products_sub_nav.html'"></ng-include>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'create'">Create a new location</h2>
+    <h2 class="subhead-heading" ng-show="$route.current.mode == 'edit'">Edit location ({{location._id}})</h2>
+    <p class="subhead-description">
+      Create new locations for each physical presense of your organization.
+    </p>
+  </div>
+  <div>
+    <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+      <dt><label>Name (required)</label></dt>
+      <dd><input id="name" class="form-control" type="text" ng-model="location.name" required><dd>
+      <dd class="error" ng-show="errors['name']">
+        <span ng-show="errors['name'].kind == 'required'">Name is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>About Location</label></dt>
+      <dd><input id="about_location" class="form-control" type="text" ng-model="location.about_location"><dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Hours</label></dt>
+      <dd><input id="hours" class="form-control" type="text" ng-model="location.hours"><dd>
+    </dl>
+    <h4>Address Information</h4>
+    <dl class="form-group" ng-class="{ 'errored': errors['address.address_line_1'] }">
+      <dt><label>Address Line 1 (required)</label></dt>
+      <dd><input id="address_line_1" class="form-control" type="text" ng-model="location.address.address_line_1" required><dd>
+      <dd class="error" ng-show="errors['address.address_line_1']">
+        <span ng-show="errors['address.address_line_1'].kind == 'required'">Address line 1 is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Address Line 2</label></dt>
+      <dd><input id="address_line_2" class="form-control" type="text" ng-model="location.address.address_line_2"><dd>
+    </dl>
+    <dl class="form-group" ng-class="{ 'errored': errors['address.city'] }">
+      <dt><label>City (required)</label></dt>
+      <dd><input id="city" class="form-control" type="text" ng-model="location.address.city" required><dd>
+      <dd class="error" ng-show="errors['address.city']">
+        <span ng-show="errors['address.city'].kind == 'required'">City is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group" ng-class="{ 'errored': errors['address.state'] }">
+      <dt><label>State (required)</label></dt>
+      <input id="state" class="form-control" type="text" ng-model="location.address.state" required><dd>
+      <dd class="error" ng-show="errors['address.state']">
+        <span ng-show="errors['address.state'].kind == 'required'">State is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group" ng-class="{ 'errored': errors['address.zip_code'] }">
+      <dt><label>Zip Code(required)</label></dt>
+      <dd><input id="zip_code" class="form-control" type="text" ng-model="location.address.zip_code" required><dd>
+      <dd class="error" ng-show="errors['address.zip_code']">
+        <span ng-show="errors['address.zip_code'].kind == 'required'">Zip code is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Manager</label></dt>
+      <dd><input id="manager" class="form-control" type="text" ng-model="location.address.manager"><dd>
+    </dl>
+    <h4>Contact Information</h4>
+    <dl class="form-group">
+      <dt><label>Phone Number</label></dt>
+      <dd><input id="phone_number" class="form-control" type="text" ng-model="location.contact.phone_number"><dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Fax Number</label></dt>
+      <dd><input id="fax_number" class="form-control" type="text" ng-model="location.contact.fax_number"><dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Email Address</label></dt>
+      <dd><input id="email_address" class="form-control" type="text" ng-model="location.contact.email_address"><dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Website Url</label></dt>
+      <dd><input id="website_url" class="form-control" type="text" ng-model="location.contact.website_url"><dd>
+      <dd class="error" ng-show="errors['branding.color_4']">
+        <span ng-show="errors['branding.color_4'].kind == 'required'">Color 4 is required.</span>
+      </dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Twitter Handle</label></dt>
+      <dd><input id="twitter_handle" class="form-control" type="text" ng-model="location.contact.twitter_handle"><dd>
+    </dl>
+    <dl class="form-group">
+      <dt><label>Default Calculator</label></dt>
+      <dd><select class="form-control" name="calculator" ng-options="o._id as o.name for o in markup_calculators" ng-model="location._default_calculator" /><dd>
+    </dl>
+    <p>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveLocation(location)"  ng-show="$route.current.mode == 'create'">Create location</button>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveLocation(location)"  ng-show="$route.current.mode == 'edit'">Save location</button>
+      <button style="margin-top:20px" class="btn btn-danger" ng-click="deleteLocation(location)"  ng-show="$route.current.mode == 'edit'">Delete location</button>
+    </p>
+  </div>
+</div>

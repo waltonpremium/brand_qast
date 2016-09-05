@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/company_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <h3>Logos/Branding</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column one-third">
+              <dl class="form-group" ng-class="{ 'errored': errors['branding.color_1'] }">
+                <dt><label for="color_1">Color 1 (Required)</dt>
+                <dd><input id="color_1" class="form-control" type="text" ng-model="account.branding.color_1" required></dd>
+                <dd class="error" ng-show="errors['branding.color_1']">
+                  <span ng-show="errors['branding.color_1'].kind == 'required'">Color 1 is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['branding.color_2'] }">
+                <dt><label for="color_2">Color 2 (Required)</dt>
+                <dd><input id="color_2" class="form-control" type="text" ng-model="account.branding.color_2" required></dd>
+                <dd class="error" ng-show="errors['branding.color_2']">
+                  <span ng-show="errors['branding.color_2'].kind == 'required'">Color 2 is required.</span>
+                </dd>
+              </dl>
+            </div>
+            <div class="column one-third">
+              <dl class="form-group" ng-class="{ 'errored': errors['branding.color_3'] }">
+                <dt><label for="color_3">Color 3 (Required)</dt>
+                <dd><input id="color_3" class="form-control" type="text" ng-model="account.branding.color_3" required></dd>
+                <dd class="error" ng-show="errors['branding.color_3']">
+                  <span ng-show="errors['branding.color_3'].kind == 'required'">Color 3 is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['branding.color_4'] }">
+                <dt><label for="color_4">Color 4 (Required)</dt>
+                <dd><input id="color_4" class="form-control" type="text" ng-model="account.branding.color_4" required></dd>
+                <dd class="error" ng-show="errors['branding.color_4']">
+                  <span ng-show="errors['branding.color_4'].kind == 'required'">Color 4 is required.</span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <p>
+            <button style="margin-top:10px" class="btn btn-primary" ng-click="saveBranding(account.branding)">Save branding information</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

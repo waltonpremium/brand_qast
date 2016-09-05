@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="auth-form">
+    <div class="auth-form-header">
+      <h1>Sign In to your BrandQast Account</h1>
+    </div>
+    <div class="auth-form-body">
+      <dl class="form-group" ng-class="{ 'errored': errors['username'] }">
+        <dt><label for="username">Username</label></dt>
+        <dd><input id="username" class="form-control" type="text" ng-model="auth.username" required><dd>
+        <dd class="error" ng-show="errors['username']">
+          <span ng-show="errors['username'].kind == 'required'">Please enter your username.</span>
+        </dd>
+      </dl>
+      <dl class="form-group" ng-class="{ 'errored': errors['password'] }">
+        <dt><label for="password">Password</label></dt>
+        <dd><input id="password" class="form-control" type="password" ng-model="auth.password" required><dd>
+        <dd class="error" ng-show="errors['password']">
+          <span ng-show="errors['password'].kind == 'required'">Please enter your password.</span>
+        </dd>
+      </dl>
+      <p>
+        <button style="margin-top:20px" class="btn btn-primary" style="width: 100%" ng-click="signIn(auth.username, auth.password)">Sign In</button>
+      </p>
+    </div>
+  </div>
+</div>

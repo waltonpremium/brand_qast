@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/account_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <h3>Billing Address</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group" ng-class="{ 'errored': errors['billing.billing_address.address_line_1'] }">
+                <dt><label for="address_line_1">Address Line 1</dt>
+                <dd><input id="address_line_1" class="form-control" type="text" ng-model="billing.billing_address.address_line_1" required></dd>
+                <dd class="error" ng-show="errors['billing.billing_address.address_line_1]">
+                  <span ng-show="errors['billing.billing_address.address_line_1'].kind == 'required'">Address line 1 is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="address_line_2">Address Line 2</label></dt>
+                <dd><input id="address_line_2" class="form-control" type="text" ng-model="billing.billing_address.address_line_2"></dd>
+              </dl>
+              <div class="columns">
+                <div class="column one-third left">
+                  <dl class="form-group" ng-class="{ 'errored': errors['billing.billing_address.city'] }">
+                    <dt><label for="city">City</label></dt>
+                    <dd><input id="city" class="form-control" type="text" ng-model="billing.billing_address.city"></dd>
+                    <dd class="error" ng-show="errors['billing.billing_address.city]">
+                      <span ng-show="errors['billing.billing_address.city'].kind == 'required'">City is required.</span>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="column one-third ">
+                  <dl class="form-group" ng-class="{ 'errored': errors['billing.billing_address.state'] }">
+                    <dt><label for="state">State</label></dt>
+                    <dd><input id="state" class="form-control" type="text" ng-model="billing.billing_address.state"></dd>
+                    <dd class="error" ng-show="errors['billing.billing_address.state]">
+                      <span ng-show="errors['billing.billing_address.state'].kind == 'required'">State is required.</span>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="column one-third ">
+                  <dl class="form-group" ng-class="{ 'errored': errors['billing.billing_address.zip_code'] }">
+                    <dt><label for="zip_code">Zip Code</label></dt>
+                    <dd><input id="zip_code" class="form-control" type="text" ng-model="billing.billing_address.zip_code"></dd>
+                    <dd class="error" ng-show="errors['billing.billing_address.zip_code]">
+                      <span ng-show="errors['billing.billing_address.zip_code'].kind == 'required'">Zip code is required.</span>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>
+            <button class="btn btn-primary" ng-click="saveBillingAddress(billing.billing_address)">Save billing address</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

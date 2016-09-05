@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h3>Request a subscription to {{account.name}}</h3>
+      <p>
+        The following information from your BrandQast account will inform {{account.name}} that you are requesting to be added as a subscriber to their product line. You will also need to provide additional details that will enable the administrator to seek authorization from your contact within {{account.name}}. This information is only required the first time you subscribe to information from {{account.name}}.
+      </p>
+      <div>
+        <h4>Subscription Request Information</h4>
+        <p>
+          <label>Your Name:</label>
+          <span class="input-text" style="display: block;">{{user.first_name}} {{user.last_name}}</span>
+        </p>
+        <p>
+          <label>Your Company Name</label>
+          <span class="input-text" style="display: block;">{{user._account.name}}</span>
+        </p>
+        <p>
+          <label>Your Email</label>
+          <span class="input-text" style="display: block;">{{user.username}}</span>
+        </p>
+        <p>
+          <label>Your Phone</label>
+          <span class="input-text" style="display: block;">{{user.phone}}</span>
+        </p>
+        <p>
+          <label>BrandQast Account #</label>
+          <span class="input-text" style="display: block;">{{user._account._id}}</span>
+        </p>
+        <p>
+          <label>{{account.name}} Account #</label>
+          <input id="vendor_account_number" class="form-control" type="text" ng-model="subscription_request.vendor_account_number" placeholder="{{account.name}} Account Number" required>
+        </p>
+        <p>
+          <label>Notes/Comments</label>
+          <textarea id="notes" class="form-control" type="text" ng-model="subscription_request.subscription_request_notes" placeholder="Enter any details about the relationship between you and {{account.name}}" rows="3" required />
+        </p>
+      </div>
+      <div>
+        <h4>{{account.name}} Contact Information</h4>
+        <p>
+          <label>Name</label>
+          <input id="vendor_contact_name" class="form-control" type="text" ng-model="subscription_request.vendor_contact.name" placeholder="Contact Name" required>
+        </p>
+        <p>
+          <label>Email Address</label>
+          <input id="vendor_contact_email_address" class="form-control" type="text" ng-model="subscription_request.vendor_contact.email_address" placeholder="Contact Email Address" required>
+        </p>
+        <p>
+          <label>Phone Number</label>
+          <input id="vendor_contact_phone_number" class="form-control" type="text" ng-model="subscription_request.vendor_contact.phone_number" placeholder="Contact Phone Number" required>
+        </p>
+      </div>
+      <div>
+        <p>
+          <button style="margin-top:20px" class="btn btn-default" ng-click="subscribe(subscription_request)">Submit Request</button>
+          <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Cancel</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

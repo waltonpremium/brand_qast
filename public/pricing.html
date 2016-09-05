@@ -1,0 +1,52 @@
+<ng-include src="'/partials/products_head.html'"></ng-include>
+<div class="container products-container">
+  <div class="file-navigation in-mid-page">
+    <div class="right" style="margin-bottom: 20px;">
+      <button class="btn" type="button">Recalculate Pricing</button>
+      <button class="btn" type="button">Lock Prices</button>
+      <button class="btn" type="button">Unlock Prices</button>
+    </div>
+  </div>
+  <div class="boxed-group" ng-show="products.length > 0">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th width="140px"></th>
+          <th width="180px">Product Name</th>
+          <th width="120px">SKU</th>
+          <th width="120px">Manu #</th>
+          <th align="center" ng-repeat="pricing_field in product_line_revision.pricing_fields | orderBy:'name'">
+            {{ pricing_field.label }}
+          </th>
+          <th>Effective Price</th>
+          <th>Calculator</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in products | orderBy:'name'" style="cursor:pointer">
+          <td align="center">
+            <img src="/images/thumbnail-default.jpg"  class="thumbnail" width="120px;" ng-hide="product.primary_media" />
+            <img ng-src="/{{product.primary_media.filename}}" class="thumbnail" width="120px;" ng-show="product.primary_media" />
+          </td>
+          <td>
+            <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line_revision._id}}/products/{{product._id}}">{{ product.name }}</a>
+          </td>
+          <td>
+            {{product.sku}}
+          </td>
+          <td>
+            {{product.manufacturer_number}}
+          </td>
+          <td align="center" ng-click="priceCellClicked($parent.$index, $index)" ng-repeat="pricing_field in product_line_revision.pricing_fields | orderBy:'name'">
+            <span ng-show="!isEditing($parent.$index, $index)">{{product_pricing[$parent.$index][$index] | currency}}</span>
+            <span ng-show="isEditing($parent.$index, $index)"><input class="form-control" type="textbox" name="pricing" ng-model="product_pricing[$parent.$index][$index]" ng-blur="updateProductPrice(product, pricing_field, $parent.$index, $index)" style="width: 60px;" /></span>
+          </td>
+          <td><select class="form-control" name="display_price" ng-options="o._id as o.label for o in product_line_revision.pricing_fields" ng-model="product.display_price"  ng-change="updateDisplayPrice(product, product.display_price)"/></td>
+          <td><select class="form-control" name="calculator" ng-options="o._id as o.name for o in product_line_revision.markup_calculators" ng-model="product.markup_calculator" ng-change="updateMarkupCalculator(product, product.markup_calculator)" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <uib-pagination total-items="totalItems" ng-model="currentPage" max-size="10" class="pagination-sm" boundary-link-numbers="true" ng-change="pageChanged()" ng-show="products.length > 0"></uib-pagination>
+  <ng-include src="'/partials/products_blankstate.html'"></ng-include>
+</div>

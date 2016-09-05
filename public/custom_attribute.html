@@ -1,0 +1,48 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading">Create a new custom attribute</h2>
+    <p class="subhead-description">
+      Create a custom attribute to define a new attributes for your products.
+    </p>
+  </div>
+  <div>
+    <dl class="form-group" ng-class="{ 'errored': errors['group_name'] }">
+      <dt><label for="group_name">Group Name (required)</label></dt>
+      <dd><input id="group_name" class="form-control" type="text" ng-model="custom_attribute.group_name" required></dd>
+      <dd class="error" ng-show="errors['group_name']">
+        <span ng-show="errors['group_name'].kind == 'required'">Group Name is required.</span>
+      </dd>
+    </dt>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Default Value</th>
+          <th>Sample Value</th>
+        </tr>
+    </thead>
+      <tr ng-repeat="attribute in custom_attribute.attributes">
+        <td>
+          <dl class="form-group" ng-class="{ 'errored': errors['attributes.name'] }">
+            <dt><input id="name" class="form-control" type="text" ng-model="attribute.name" required></dt>
+            <dd class="error" ng-show="errors['attributes.name']">
+              <span ng-show="errors['attributes.name'].kind == 'required'">Attribute is required.</span>
+            </dd>
+          </dl>
+        </td>
+        <td><input id="default_value" class="form-control" type="text" ng-model="attribute.default_value" required></td>
+        <td><input id="sample_value" class="form-control" type="text" ng-model="attribute.sample_value" required></td>
+      </tr>
+      <tfoot>
+        <tr>
+          <td colspan="3">
+            <a href="" ng-click="addAttribute()">add attribute</a>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <p>
+      <button style="margin-top:20px" class="btn btn-primary" ng-click="saveCustomAttribute(custom_attribute)">Create custom attribute</button>
+    </p>
+  </div>
+</div>

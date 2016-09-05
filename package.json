@@ -1,0 +1,43 @@
+{
+  "name": "brandqast-api",
+  "version": "0.0.0",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "angular-ui-bootstrap": "^1.2.5",
+    "async": "^1.5.2",
+    "bcrypt": "^0.8.5",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "csv-parse": "^1.0.4",
+    "debug": "~2.2.0",
+    "dotenv": "^2.0.0",
+    "express": "~4.13.1",
+    "install": "^0.6.1",
+    "jade": "~1.11.0",
+    "jwt-simple": "^0.3.1",
+    "mongoose": "^4.4.7",
+    "mongoose-paginate": "^5.0.0",
+    "morgan": "~1.6.1",
+    "multer": "^1.1.0",
+    "ngstorage": "^0.3.10",
+    "npm": "^3.8.3",
+    "passport": "^0.3.0",
+    "passport-jwt": "^1.2.1",
+    "redis": "^2.6.0-1",
+    "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3",
+    "wildcard-subdomains": "^0.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^3.2.1",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-sass": "^2.2.0"
+  }
+}

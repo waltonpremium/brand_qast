@@ -1,0 +1,70 @@
+<div class="new-container">
+  <div class="subhead">
+    <h2 class="subhead-heading">Create a new markup calculator</h2>
+    <p class="subhead-description">
+      A markup calculator allows you to define how pricing for your products is calculated.
+    </p>
+  </div>
+  <div>
+    <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+      <dt><label>Calculator Name (required)</label></dt>
+      <dd><input id="calculator_name" class="form-control" type="text" ng-model="markup_calculator.name" placeholder="Name your markup calculator" required><dd>
+      <dd class="error" ng-show="errors['name']">
+        <span ng-show="errors['name'].kind == 'required'">Name is required.</span>
+      </dd>
+    </dl>
+    <hr />
+  </div>
+  <div class="pricing_field_calculation" ng-repeat="rule in markup_calculator.rules">
+    <dl class="form-group">
+      <dt><h2>{{rule.destination_pricing_field.label}}</h2></dt>
+      <dt><label><input type="radio" ng-value="true" ng-model="rule.is_manual" /> Manual</label></dt>
+      <dt><label><input type="radio" ng-value="false" ng-model="rule.is_manual" /> Calculate based on</label></dt>
+    </dl>
+    <div ng-show="rule.is_manual == false">
+      <div class="columns">
+        <div class="column one-third">
+          <dl class="form-group">
+            <dd><select class="form-control" name="source_pricing_field" ng-options="o._id as o.label for o in pricing_fields  | filter: { _id: '!' + rule.destination_pricing_field._id }" ng-model="rule.source_pricing_field" /></dd>
+          </dl>
+        </div>
+        <div class="column two-thirds" ng-repeat="pricing_rule in rule.pricing_rules">
+          <div class="columns">
+            <div class="column one-half">
+              <dl class="form-group">
+                <dd><select class="form-control" name="operator" ng-options="o as o for o in operators" ng-model="pricing_rule.operation" /></dd>
+              </dl>
+            </div>
+            <div class="column one-half">
+              <dl class="form-group">
+                <dd>
+                    <div class="input-group" ng-show="pricing_rule.operation == 'Add' || pricing_rule.operation == 'Subtract'">
+                      <span class="input-group-addon">$</span>
+                      <input class="form-control" name="amount" type="text" ng-model="pricing_rule.amount" placeholder="Amount (eg. 10.00)" />
+                    </div>
+                    <div class="input-group" ng-show="pricing_rule.operation == 'Multiply' || pricing_rule.operation == 'Divide'">
+                      <span class="input-group-addon">by</span>
+                      <input class="form-control" name="amount" type="text" ng-model="pricing_rule.amount" placeholder="Number (eg. 2)" />
+                    </div>
+                    <div class="input-group" ng-show="pricing_rule.operation == 'Markup' || pricing_rule.operation == 'Markdown'">
+                      <span class="input-group-addon">%</span>
+                      <input class="form-control" name="amount" type="text" ng-model="pricing_rule.amount" placeholder="Number (eg. 10)" />
+                    </div>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <a href="#" ng-click="addPricingRule(rule)">add rule</a>
+        </div>
+      </div>
+      <dl class="form-group">
+        <dt><label class="">Select rounding calculator</label></dt>
+        <dt><select class="form-control" name="rounding_calculator" ng-options="o._id as o.name for o in rounding_calculators" ng-model="rule.rounding_calculator" /></dt>
+      </dl>
+    </div>
+    <hr />
+  </div>
+  <p>
+    <button style="margin-top:20px" class="btn btn-primary" ng-click="saveMarkupCalculator(markup_calculator)">Create new markup calculator</button>
+  </p>
+</div>

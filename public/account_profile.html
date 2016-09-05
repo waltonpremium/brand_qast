@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/account_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <h3>Account Profile</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group" ng-class="{ 'errored': errors['name'] }">
+                <dt><label for="name">Company Name (Required)</dt>
+                <dd><input id="name" class="form-control" type="text" ng-model="account.name" required></dd>
+                <dd class="error" ng-show="errors['name']">
+                  <span ng-show="errors['name'].kind == 'required'">Company name is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['subdomain'] }">
+                <dt><label for="subdomain">Subdomain (Required)</dt>
+                <dd><input id="subdomain" class="form-control" type="text" ng-model="account.subdomain" required></dd>
+                <dd class="error" ng-show="errors['subdomain']">
+                  <span ng-show="errors['subdomain'].kind == 'required'">Subdomain is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group">
+                <dt><label for="company_name">Industry/Customer Type</dt>
+                <dt><input id="company_name" class="form-control" type="text" ng-model="account.customer_type" required></dt>
+              </dl>
+            </div>
+          </div>
+          <p>
+            <button class="btn btn-primary" ng-click="saveProfile({ 'name': account.name, 'subdomain': account.subdomain })">Save account profile</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

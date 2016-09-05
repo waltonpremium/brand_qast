@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/settings_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="subhead">
+        <h2 class="subhead-heading">Defaults</h2>
+        <p>Customize default terms used in Brandqast to match company terminology specific to your industry.</p>
+      </div>
+      <div class="boxed-group">
+        <h3>Defaults</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group"  ng-class="{ 'errored': errors['defaults.photos'] }">
+                <dt><label for="Photos">Photos</label></dt>
+                <dd>
+                  <select class="form-control" name="photos" ng-model="account.defaults.photos" style="width: inherit">
+                    <option value="Display">Display</option>
+                  </select>
+                </dd>
+                <dd class="error" ng-show="errors['defaults.photos']">
+                  <span ng-show="errors['defaults.photos'].kind == 'required'">A default value for Photos is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['defaults.likes'] }">
+                <dt><label for="likes">Likes</label></dt>
+                <dd>
+                  <select class="form-control" name="likes" ng-model="account.defaults.likes" style="width: inherit">
+                    <option value="All">All</option>
+                  </select>
+                </dd>
+                <dd class="error" ng-show="errors['defaults.likes']">
+                  <span ng-show="errors['defaults.likes'].kind == 'required'">A default value for Likes is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group"  ng-class="{ 'errored': errors['defaults.shares'] }">
+                <dt><label for="shares">Shares</label></dt>
+                <dd>
+                  <select class="form-control" name="shares" ng-model="account.defaults.shares" style="width: inherit">
+                    <option value="Selected">Selected</option>
+                  </select>
+                </dd>
+                <dd class="error" ng-show="errors['defaults.shares']">
+                  <span ng-show="errors['defaults.shares'].kind == 'required'">A default value for Shares is required.</span>
+                </dd>
+              </dl>
+              <p>
+                <button style="margin-top:10px" class="btn btn-primary" ng-click="saveDefaults(account.defaults)">Save defaults</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

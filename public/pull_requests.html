@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'partials/main_profile.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="tabnav">
+        <ng-include src="'partials/main_sub_nav.html'"></ng-include>
+      </div>
+    <div class="product-lines-container">
+      <div  ng-show="pull_requests.length > 0">
+        <table class="table table-hover">
+          <tbody>
+            <tr ng-repeat="pull_request in pull_requests | orderBy:'createdAt:true'" style="cursor:pointer">
+              <td>
+                <a ng-href="/product_lines/{{product_line._id}}/product_line_revisions/{{product_line._current_revision}}">{{ product_line.name }} Product Line ({{product_line._id}})</a>
+                <br />
+                {{ product_line.description}}
+                <br>
+                Last Updated: {{product_line.updatedAt | date:'medium'}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="blankslate blankslate-spacious blankslate-large" ng-show="pull_requests.length == 0">
+        <h3>Your have no pull requests</h3>
+        <p>Pull requests allow you to receive product information from your upstream subscriptions and merge it into your product lines.  Once you have subscribed to other vendors, you will begin to receive pull requests whenever they change product information.  When you receive the pull request you will have complete control over how to integrate the changes into your product line.</p>
+        <a class="btn btn-primary btn-large" href="/new_product_line" style="margin-top: 40px;">Browse Vendors</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

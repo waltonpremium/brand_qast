@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="brandqastApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BrandQast v2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/ngstorage/ngStorage.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+    <script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/primer.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="/js/app.js"></script>
+    <!-- Start of brandqast Zendesk Widget script -->
+    <script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","brandqast.zendesk.com");
+    /*]]>*/</script>
+    <!-- End of brandqast Zendesk Widget script -->
+  </head>
+
+  <body ng-controller="MainController">
+    <div class="header">
+      <div class="container">
+        <div class="header-nav left" ng-hide="isLoggedIn">
+          <div class="header-nav-link" href="/" style="font-size: 16px;">BrandQast</div>
+        </div>
+        <div class="header-nav left" ng-show="isLoggedIn">
+          <li class="header-nav-link" href="/" style="font-size: 16px;">{{user._account.name}}</li>
+        </div>
+        <ul class="header-nav user-nav left" style="margin-left: 120px">
+          <li class="header-nav-item"><a href="/" class="js-selected-navigation-item header-nav-link">Home</a></li>
+          <li class="header-nav-item"><a href="/pull_requests" class="js-selected-navigation-item header-nav-link">Pull Requests</a></li>
+        </ul>
+        <div class="site-header-actions right" ng-hide="isLoggedIn">
+          <a href="/sign_in" class="btn btn-primary site-header-actions-btn">Sign In</a>
+          <a href="/sign_up" class="btn site-header-actions-btn mr-2">Sign Up</a>
+        </div>
+        <ul class="header-nav user-nav right" ng-show="isLoggedIn">
+          <li class="header-nav-item dropdown js-menu-container">
+            <div class="btn-group" uib-dropdown dropdown-append-to-body>
+              <a href="#" id="btn-append-to-to-body" type="button"  aria-label="View your profile and company's settings" class="header-nav-link name tooltipped tooltipped-sw js-menu-target" uib-dropdown-toggle>
+                <img alt="@jrhodes621" class="avatar" height="30" src="https://avatars1.githubusercontent.com/u/1112785?v=3&amp;s=40" width="30">
+                <span class="dropdown-caret"></span>
+              </a>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-to-body">
+                <li role="menuitem" class="dropdown-header header-nav-current-user css-truncate">Signed in as <strong class="css-truncate-target">{{user.username}}</strong></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="/settings/account/profile">Account</a></li>
+                <li role="menuitem"><a href="/settings/company/profile">Company</a></li>
+                <li role="menuitem"><a href="/media">Media Library</a></li>
+                <li role="menuitem"><a href="/settings/profile">Profile</a></li>
+                <li role="menuitem"><a href="/settings/custom_statuses">Settings</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#" ng-click="logout()">Logout</a></li>
+              </ul>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Dynamically render templates -->
+    <div ng-view style="margin-bottom: 40px;">
+    </div>
+    <div class="container site-footer-container">
+      <div class="site-footer" role="contentinfo">
+        <ul class="site-footer-links right">
+            <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+          <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+          <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+          <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+            <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+            <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+        </ul>
+
+        <a href="https://www.brandqast.com" aria-label="Homepage" class="site-footer-mark">
+          <img src="images/logo-brandqast.png" class="logo" width="120" alt="Brandqast" />
+        </a>
+        <ul class="site-footer-links">
+          <li>© 2016 <span title="0.18879s from github-fe124-cp1-prd.iad.github.net">Brandqast</span>, Inc.</li>
+            <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+            <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+            <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+            <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+            <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

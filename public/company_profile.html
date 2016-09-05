@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'/partials/company_sub_nav.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="flash-messages" ng-show="flash_message">
+        <div class="flash">
+          {{flash_message}}
+        </div>
+      </div>
+      <div class="boxed-group">
+        <h3>Company Profile</h3>
+        <div class="boxed-group-inner">
+          <div class="columns">
+            <div class="column two-thirds">
+              <dl class="form-group" ng-class="{ 'errored': errors['company.corporate_name'] }">
+                <dt><label for="corporate_name">Corporate Name (Required)</dt>
+                <dd><input id="corporate_name" class="form-control" type="text" ng-model="account.company.corporate_name" required></dd>
+                <dd class="error" ng-show="errors['company.corporate_name']">
+                  <span ng-show="errors['company.corporate_name'].kind == 'required'">Corporate name is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['company.trading_name'] }">
+                <dt><label for="trading_name">Trading Name (Requeired)</label></dt>
+                <dd><input id="trading_name" class="form-control" type="text" ng-model="account.company.trading_name"></dd>
+                <dd class="error" ng-show="errors['company.trading_name']">
+                  <span ng-show="errors['company.trading_name'].kind == 'required'">Trading name is required.</span>
+                </dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['company.phone_number'] }">
+                <dt><label for="phone_number">Phone Number</dt>
+                <dd><input id="phone_number" class="form-control" type="text" ng-model="account.company.phone_number" required></dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['company.fax_number'] }">
+                <dt><label for="fax_number">Fax Number</label></dt>
+                <dd><input id="fax_number" class="form-control" type="text" ng-model="account.company.fax_number"></dd>
+              </dl>
+              <dl class="form-group" ng-class="{ 'errored': errors['company.website_url'] }">
+                <dt><label for="website_url">Website Url</label></dt>
+                <dd><input id="website_url" class="form-control" type="text" ng-model="account.company.website_url"></dd>
+              </dl>
+              <p>
+                <button style="margin-top:10px" class="btn btn-primary" ng-click="saveCompany(account.company)">Save company information</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

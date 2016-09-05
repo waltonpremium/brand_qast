@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'partials/main_profile.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="tabnav">
+        <ng-include src="'partials/main_sub_nav.html'"></ng-include>
+      </div>
+      <div class="product-lines-container" ng-show="apis.length > 0">
+        <table class="table table-hover">
+          <tbody>
+            <tr ng-repeat="api in apis" style="cursor:pointer">
+              <td>
+                {{ api.name}}
+                <br>
+                Last Updated: {{api.updatedAt}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="blankslate blankslate-spacious blankslate-large" ng-show="apis.length == 0">
+        <h3>APIs</h3>
+        <p>Similar to syndicating your product information and pricing to downstream subscribers, you can also pubish your data to APIs that allow other systems to pull your product data programatically.  You can create a single API that exposes all of your product data or many APIs to segment your data for different purposes or for different vendor needs.  When you create an API you'll have complete control over which product and pricing information is published in your API.</p>
+        <a class="btn btn-primary btn-large" href="/new_api" style="margin-top: 40px;">Create an API</a>
+      </div>
+    </div>
+  </div>
+</div>

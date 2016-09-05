@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="columns" style="margin-top: 40px;">
+    <div class="column one-fourth">
+      <ng-include src="'partials/main_profile.html'"></ng-include>
+    </div>
+    <div class="column three-fourths">
+      <div class="tabnav">
+        <ng-include src="'partials/main_sub_nav.html'"></ng-include>
+      </div>
+      <div class="product-lines-container" ng-show="subscriptions.length > 0">
+        <table class="table table-hover">
+          <tbody>
+            <tr ng-repeat="subscription in subscriptions" style="cursor:pointer">
+              <td>
+                {{ subscription._downstream_account.name}}
+                <br />
+                {{ subscription.vendor_account_number}}
+                <br>
+                Last Updated: {{subscription.createdAt}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="blankslate blankslate-spacious blankslate-large" ng-show="subscriptions.length == 0">
+        <h3>Your Downstream Subscribers</h3>
+        <p>It doesn't look like you have any downstream subscribers.  Your downstream subscribers are other organization's in your network that will receive your product information when you syndicate a product line.  When you receive a downstream subscriber, you will need to approve the subscription as well as assign the subscriber to a subscriber level.  Subscriber levels allow you to control the products and product pricing when you syndicate your product data to downstream subscribers.</p>
+        <a class="btn btn-primary btn-large" href="/new_product_line" style="margin-top: 40px;">Invite Subscribers</a>
+      </div>
+    </div>
+  </div>
+</div>
